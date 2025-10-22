@@ -12,7 +12,7 @@
         "string",
         "analysis"
     ],
-    "author": "Your Name",
+    "author": "Callum Trace",
     "license": "ISC",
     "dependencies": {
         "cors": "^2.8.5",
