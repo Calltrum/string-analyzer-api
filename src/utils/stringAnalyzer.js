@@ -31,7 +31,7 @@ function getCharacterFrequencyMap(str) {
 function analyzeString(value) {
     return {
         length: value.length,
-        is_Palindrome: isPalindrome(value),
+        is_palindrome: isPalindrome(value),
         unique_characters: countUniqueCharacters(value),
         word_count: countWords(value),
         sha256_hash: calculateSHA256(value),

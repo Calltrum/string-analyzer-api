@@ -7,11 +7,19 @@ const { parseNaturalLanguage, hasConflictingFilters } = require('../utils/natura
  * POST /strings - Create/Analyze a new string
  */
 exports.createString = (req, res) => {
+    console.log('========== CREATE STRING CALLED ==========');
+    console.log('Request body:', req.body);
+    console.log('Request body type:', typeof req.body);
+    console.log('Value:', req.body?.value);
+    console.log('Value type:', typeof req.body?.value);
+    console.log('==========================================');
+
     try {
         const { value } = req.body;
 
         // Check if value field exists
         if (value === undefined || value === null) {
+            console.log('❌ Missing value field - returning 400');
             return res.status(400).json({
                 error: 'Bad Request',
                 message: 'Missing "value" field'
@@ -20,6 +28,7 @@ exports.createString = (req, res) => {
 
         // Check if value is a string
         if (typeof value !== 'string') {
+            console.log('❌ Invalid type - returning 422');
             return res.status(422).json({
                 error: 'Unprocessable Entity',
                 message: 'Invalid data type for "value" (must be string)'
@@ -28,6 +37,7 @@ exports.createString = (req, res) => {
 
         // Check if string already exists
         if (storage.stringExists(value)) {
+            console.log('❌ Duplicate - returning 409');
             return res.status(409).json({
                 error: 'Conflict',
                 message: 'String already exists in the system'
@@ -40,6 +50,7 @@ exports.createString = (req, res) => {
         // Store the string
         const result = storage.storeString(value, properties);
 
+        console.log('✅ Success - returning 201');
         // Return the created resource
         return res.status(201).json(result);
 
@@ -51,10 +62,6 @@ exports.createString = (req, res) => {
         });
     }
 };
-
-/**
- * GET /strings/:string_value - Get a specific string by its value
- */
 exports.getString = (req, res) => {
     try {
         const { string_value } = req.params;
