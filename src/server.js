@@ -26,7 +26,6 @@ app.get("/", (req, res) => {
     });
 });
 
-app.use("/strings", stringRoutes);
 
 app.use((req, res) => {
     res.status(404).json({
@@ -47,7 +46,7 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-    console.log(`🌐 local: http:localhost:${PORT}`);
+    console.log(`🌐 local: http://localhost:${PORT}`);
 });
 
 module.exports = app;
