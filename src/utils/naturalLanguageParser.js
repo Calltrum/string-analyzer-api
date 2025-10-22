@@ -16,3 +16,8 @@ function hasConflictingFilters(filters) {
     }
     return false;
 }
+
+module.exports = {
+    parseNaturalLanguage,
+    hasConflictingFilters
+};

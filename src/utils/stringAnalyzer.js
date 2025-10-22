@@ -38,3 +38,9 @@ function analyzeString(value) {
         character_frequency_map: getCharacterFrequencyMap(value)
     };
 }
+
+
+module.exports = {
+    analyzeString,
+    calculateSHA256
+};

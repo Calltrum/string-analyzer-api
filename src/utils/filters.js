@@ -7,3 +7,19 @@ function applyFilters(strings, filters) {
 
     return filtered;
 }
+
+function validateFilters(filters) {
+    const validKeys = ['is_palindrome'];
+    const invalidKeys = Object.keys(filters).filter(key => !validKeys.includes(key));
+
+    if (invalidKeys.length > 0) {
+        return { valid: false, message: `Invalid filter(s): ${invalidKeys.join(', ')}` };
+    }
+
+    return { valid: true };
+}
+
+module.exports = {
+    applyFilters,
+    validateFilters
+};
